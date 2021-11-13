@@ -7,4 +7,4 @@ class FormularioProductos(forms.Form):
     descripcion = forms.CharField(widget=Textarea)
     precio = forms.FloatField()
     stock = forms.IntegerField()
-    imagen = forms.ImageField(upload_to='imagenes', default=None, verbose_name="Imagen")
+    imagen = forms.ImageField()
