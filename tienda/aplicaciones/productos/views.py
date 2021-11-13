@@ -70,9 +70,9 @@ def editarproducto(request,pk):
                 stock = stock,
                 imagen = imangen
             )
-            return redirect(to = 'producListAll')
+            return redirect(to = 'listaproductos')
             
-def eliminarsocio(request,pk):
+def eliminarproducto(request,pk):
     producto = Producto.objects.get(pk=pk)
     producto.delete()
-    return redirect(to = 'producListAll')            
+    return redirect(to = 'listaproductos')            
