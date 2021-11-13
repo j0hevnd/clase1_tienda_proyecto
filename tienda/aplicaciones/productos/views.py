@@ -16,7 +16,7 @@ def producListAll(request):
     context = {
         'productos': productos
     }
-    return render(request, template_name="lista_productos.html", context=context)
+    return render(request, template_name="productos/lista_productos.html", context=context)
 
 
 def GuardarProducto(request):
@@ -44,6 +44,6 @@ def GuardarProducto(request):
                 imagen = imangen
             )
     agregarproducto=  FormularioProductos()
-    return render(request,'agregar_producto.html',{'formulario':agregarproducto})           
+    return render(request,'productos/agregar_producto.html',{'formulario':agregarproducto})           
             
                     
