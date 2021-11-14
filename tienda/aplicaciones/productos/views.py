@@ -1,3 +1,4 @@
+from django.http.response import HttpResponseRedirect
 from django.shortcuts import redirect, render
 
 # modelo
@@ -9,7 +10,7 @@ from .forms import FormularioProductos
 
 def producListAll(request):
     """
-    Listamos todos los productos
+    Lista todos los productos
     """
     productos = Producto.objects.all()
     
@@ -19,8 +20,10 @@ def producListAll(request):
     return render(request, template_name="productos/productos.html", context=context)
 
 
-def GuardarProducto(request):
-    
+def guardarProducto(request):
+    """
+    Guarda producto en la base de datos
+    """
     
     # Creamos una istancia para el formulario
     if request.method == 'POST':
@@ -34,24 +37,35 @@ def GuardarProducto(request):
             descripcion = formulario_data.get("descripcion")
             precio = formulario_data.get("precio")
             stock = formulario_data.get("stock")
-            imangen = formulario_data.get("imagen")
+            imagen = formulario_data.get("imagen")
             # Guardamos la informacion obtenida del formulario en la Base de datos
             Producto.objects.create(
                 nombre = nombre,
                 descripcion = descripcion,
                 precio = precio,
                 stock = stock,
-                imagen = imangen
+                imagen = imagen
             )
-    agregarproducto=  FormularioProductos()
-    return render(request,'productos/agregar_producto.html',{'formulario':agregarproducto})           
+            # Tenemos que hacer un redirect o HttpResponseRedirect 
+            # despues de una solicitud éxitosa de un método POST
+            return redirect('app_productos:lista_productos')
+            
+    agregar_producto=  FormularioProductos()
+    return render(request,'productos/agregar_producto.html',{'formulario':agregar_producto})           
             
                     
-def editarproducto(request,pk):
+def editarProducto(request, pk):
+    """
+    Edita un producto seleccionado
+    
+    Args:
+        pk: id de producto a editar
+    """
+    
     producto = Producto.objects.get(pk=pk)
     
     if request.method == 'POST':
-        formulario = FormularioProductos(request.POST,instance=producto)
+        formulario = FormularioProductos(request.POST, instance=producto)
         
         #validamos el formulario
         if formulario.is_valid():
@@ -61,18 +75,31 @@ def editarproducto(request,pk):
             descripcion = formulario_data.get("descripcion")
             precio = formulario_data.get("precio")
             stock = formulario_data.get("stock")
-            imangen = formulario_data.get("imagen")
+            imagen = formulario_data.get("imagen")
             # Guardamos la informacion obtenida del formulario en la Base de datos
             Producto.objects.create(
                 nombre = nombre,
                 descripcion = descripcion,
                 precio = precio,
                 stock = stock,
-                imagen = imangen
+                imagen = imagen
             )
-            return redirect(to = 'listaproductos')
+            return redirect(to = 'app_productos:lista_productos')
             
-def eliminarproducto(request,pk):
+    context = {
+        'producto': producto
+    }
+    return render(request, template_name="productos/tempalte_para_editar.html", context=context)
+
+
+def eliminarProducto(request,pk):
+    """
+    Elimina un producto seleccionado
+    
+    Args:
+        pk: id del producto a eliminaar
+    """
     producto = Producto.objects.get(pk=pk)
     producto.delete()
-    return redirect(to = 'listaproductos')            
+    
+    return redirect(to = 'app_productos:lista_productos')            
