@@ -10,7 +10,7 @@ class Producto(models.Model):
     descripcion = models.CharField("Descripcion", max_length=200)
     precio = models.FloatField()
     stock  = models.IntegerField("Cantidad disponible")
-    imagen = models.ImageField(upload_to='imagenes', default=None, verbose_name="Imagen")
+    imagen = models.ImageField(upload_to='imagenes/', default=None, verbose_name="Imagen")
     
     def __str__(self):
         return f"{self.nombre}"

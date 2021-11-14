@@ -28,28 +28,33 @@ def guardarProducto(request):
     # Creamos una istancia para el formulario
     if request.method == 'POST':
         formulario = FormularioProductos(request.POST)
-        
         #validamos el formulario
+        # if formulario.is_valid():
+        #     formulario_data = formulario.cleaned_data()
+        #     #obtenemos los datos del formulario
+        #     nombre = formulario_data.get("nombre")
+        #     descripcion = formulario_data.get("descripcion")
+        #     precio = formulario_data.get("precio")
+        #     stock = formulario_data.get("stock")
+        #     imagen = formulario_data.get("imagen")
+        #     # Guardamos la informacion obtenida del formulario en la Base de datos
+        #     Producto.objects.create(
+        #         nombre = nombre,
+        #         descripcion = descripcion,
+        #         precio = precio,
+        #         stock = stock,
+        #         imagen = imagen
+        #     )
+        #     # Tenemos que hacer un redirect o HttpResponseRedirect 
+        #     # despues de una solicitud éxitosa de un método POST
+        #     return redirect('app_productos:lista_productos')
         if formulario.is_valid():
-            formulario_data = formulario.cleaned_data()
-            #obtenemos los datos del formulario
-            nombre = formulario_data.get("nombre")
-            descripcion = formulario_data.get("descripcion")
-            precio = formulario_data.get("precio")
-            stock = formulario_data.get("stock")
-            imagen = formulario_data.get("imagen")
-            # Guardamos la informacion obtenida del formulario en la Base de datos
-            Producto.objects.create(
-                nombre = nombre,
-                descripcion = descripcion,
-                precio = precio,
-                stock = stock,
-                imagen = imagen
-            )
-            # Tenemos que hacer un redirect o HttpResponseRedirect 
-            # despues de una solicitud éxitosa de un método POST
+            formulario.save()
             return redirect('app_productos:lista_productos')
-            
+        else:
+            print(formulario)
+
+
     agregar_producto=  FormularioProductos()
     return render(request,'productos/agregar_producto.html',{'formulario':agregar_producto})           
             

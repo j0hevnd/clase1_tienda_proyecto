@@ -4,10 +4,11 @@
 
 {% block content %}
 
-    <form action="{% url 'agregar_producto' %}" method="post">
+    <form action="{% url 'app_productos:agregar_producto' %}" method="post"  enctype=multipart/form-data>
         {%csrf_token%}
         {{formulario}}
-        <button type="submit" value='Guardar'></button>
+        <button type="submit">Guardar</button>
     </form>
+
 
 {% endblock content %}
