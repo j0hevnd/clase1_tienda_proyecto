@@ -4,10 +4,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>{% block title %}Django Store{% endblock title %}</title>
+    {% load static %}
+    <!-- login/registro -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" >
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- productos -->
+    <link rel="stylesheet" href="{% static 'css/productos.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"/>
+    <!-- home -->
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <!-- about -->
+    <link rel="stylesheet" href="{% static 'css/about.css' %}">
+
 </head>
 <body>
-    <h2>Bienvenido {{user.username}}</h2>
-    <button><a href="{%url 'logout'%}">Logout</a></button>
+
+    {% block content %}
+
+        {% block nav %}
+
+        {% endblock nav %}
+
+        <h2>Bienvenido {{user.username}}</h2>
+        <button><a href="{%url 'logout'%}">Logout</a></button>
+
+    {% endblock content %}
+
 </body>
 </html>

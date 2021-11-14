@@ -1,46 +1,39 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-	<meta charset="UTF-8">
-	<title></title> 
-	<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, minimum-scale=1.0">
- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" >
-	<link rel="stylesheet" href="style.css">
-	
+{% extends 'base.html' %}
 
-</head>  
-<body>
- <form class="formulario">
+{% block title %} Registro {% endblock title %}
+
+{% block content %}
     
-    <h1>Registrate</h1>
-     <div class="contenedor">
-     
-     <div class="input-contenedor">
-         <i class="fas fa-user icon"></i>
-         <input type="text" placeholder="Nombre Completo">
-         
-         </div>
-         
-         <div class="input-contenedor">
-         <i class="fas fa-envelope icon"></i>
-         <input type="text" placeholder="Correo Electronico">
-         
-         </div>
-         
-         <div class="input-contenedor">
-        <i class="fas fa-key icon"></i>
-         <input type="password" placeholder="Contraseña">
-         
-         
-         </div>
-         <div class="check-box-input">
-             <input type="checkbox" name="staff" id="">staff
-         </div>
-         <input type="submit" value="Registrate" class="button">
-         <p>Al registrarte, aceptas nuestras Condiciones de uso y Política de privacidad.</p>
-         <p>¿Ya tienes una cuenta?<a class="link" href="login-vista.html">Iniciar Sesion</a></p>
-     </div>
-
+    <form class="formulario">
+    
+        <h1>Registrate</h1>
+        <div class="contenedor">
+    
+            <div class="input-contenedor">
+                <i class="fas fa-user icon"></i>
+                <input type="text" placeholder="Nombre Completo">
+    
+            </div>
+    
+            <div class="input-contenedor">
+                <i class="fas fa-envelope icon"></i>
+                <input type="text" placeholder="Correo Electronico">
+    
+            </div>
+    
+            <div class="input-contenedor">
+                <i class="fas fa-key icon"></i>
+                <input type="password" placeholder="Contraseña">
+    
+    
+            </div>
+            <div class="check-box-input">
+                <input type="checkbox" name="staff" id="">staff
+            </div>
+            <input type="submit" value="Registrate" class="button">
+            <p>Al registrarte, aceptas nuestras Condiciones de uso y Política de privacidad.</p>
+            <p>¿Ya tienes una cuenta?<a class="link" href="login-vista.html">Iniciar Sesion</a></p>
+        </div>
     </form>
-</body>
-</html>
+
+{% endblock content %}

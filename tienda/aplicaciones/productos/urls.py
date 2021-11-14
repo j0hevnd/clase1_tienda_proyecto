@@ -3,9 +3,8 @@ from django.urls import path
 from .views import GuardarProducto, editarproducto, eliminarproducto, producListAll
 
 urlpatterns = [
-    path('listaproductos/',producListAll,name="listaproductos"),
-    path('agregarproducto/',GuardarProducto,name='agregarproducto'),
-    path('editarproducto/<int:pk>' ,editarproducto,name='editarproducto'),
-    path('eliminarproducto/<int:pk>',eliminarproducto,name='eliminarproducto'),
-
+    path('lista-productos/', producListAll, name="lista_productos"),
+    path('agregar-producto/', GuardarProducto, name='agregar_producto'),
+    path('editar-producto/<int:pk>' , editarproducto, name='editar_producto'),
+    path('eliminar-producto/<int:pk>', eliminarproducto, name='eliminar_producto'),
 ]

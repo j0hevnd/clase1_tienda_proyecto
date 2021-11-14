@@ -15,6 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include # importamos el include
+# Esto para la carga de los archivos estaticos
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 urlpatterns = [
@@ -26,4 +29,4 @@ urlpatterns = [
     # vistas.
     path('', include('aplicaciones.productos.urls')),
     path('', include('aplicaciones.usuarios.urls')),
-]
+]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
