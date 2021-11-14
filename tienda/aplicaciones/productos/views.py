@@ -102,4 +102,22 @@ def eliminarProducto(request,pk):
     producto = Producto.objects.get(pk=pk)
     producto.delete()
     
-    return redirect(to = 'app_productos:lista_productos')            
+    return redirect(to = 'app_productos:lista_productos')
+
+
+### HOME
+
+def homeView(request):
+    """
+    Pagina de inicio
+    """       
+    
+    return render(request, template_name='home/home.html')
+
+
+def aboutView(request):
+    """
+    Pagina de nosotros
+    """       
+    
+    return render(request, template_name='home/about.html')

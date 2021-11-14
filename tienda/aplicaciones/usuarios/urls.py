@@ -1,7 +1,7 @@
 from os import name
 from django.urls import path
 
-import views
+from . import views
 
 
 # Este es el nombre que le ponemos a las rutas de cada proyecto,
