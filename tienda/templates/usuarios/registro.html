@@ -3,36 +3,40 @@
 {% block title %} Registro {% endblock title %}
 
 {% block content %}
-    
-    <form class="formulario">
-    
-        <h1>Registrate</h1>
+
+    <h1>Registrate</h1>
+
+    <form class="formulario" action="" method="POST">
+    {% csrf_token %}
         <div class="contenedor">
     
             <div class="input-contenedor">
                 <i class="fas fa-user icon"></i>
-                <input type="text" placeholder="Nombre Completo">
-    
+                <input type="text" placeholder="Nombre">
+            </div>
+
+            <div class="input-contenedor">
+                <i class="fas fa-user icon"></i>
+                <input type="text" placeholder="Apellidos">
             </div>
     
             <div class="input-contenedor">
                 <i class="fas fa-envelope icon"></i>
                 <input type="text" placeholder="Correo Electronico">
-    
             </div>
     
             <div class="input-contenedor">
                 <i class="fas fa-key icon"></i>
                 <input type="password" placeholder="Contraseña">
-    
-    
             </div>
+
             <div class="check-box-input">
                 <input type="checkbox" name="staff" id="">staff
             </div>
+
             <input type="submit" value="Registrate" class="button">
             <p>Al registrarte, aceptas nuestras Condiciones de uso y Política de privacidad.</p>
-            <p>¿Ya tienes una cuenta?<a class="link" href="login-vista.html">Iniciar Sesion</a></p>
+            <p>¿Ya tienes una cuenta?<a class="link" href="{% url 'app_usuarios:login' %}">Iniciar Sesion</a></p>
         </div>
     </form>
 

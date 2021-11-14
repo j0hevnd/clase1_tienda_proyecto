@@ -3,15 +3,16 @@
 {% block title %} Login {% endblock title %}
 
 {% block content %}
+        
+    <h1>Login</h1>
 
-    <form class="formulario">
-    
-        <h1>Login</h1>
+    <form class="formulario" action="" method="POST">
+        {% csrf_token %}
         <div class="contenedor">    
 
             <div class="input-contenedor">
                 <i class="fas fa-envelope icon"></i>
-                <input type="text" placeholder="Correo Electronico">
+                <input type="text" placeholder="Usuario">
             </div>
     
             <div class="input-contenedor">
@@ -20,7 +21,7 @@
             </div>
             <input type="submit" value="Login" class="button">
             <p>Al registrarte, aceptas nuestras Condiciones de uso y Política de privacidad.</p>
-            <p>¿No tienes una cuenta? <a class="link" href="registro.html">Registrate </a></p>
+            <p>¿No tienes una cuenta? <a class="link" href="{% url 'app_usuarios:registrar' %}">Registrate </a></p>
         </div>
     </form>
 

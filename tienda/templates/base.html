@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Django Store{% endblock title %}</title>
-    {% load static %}
+    {% load static %} <!-- Cargamos archivos estaticos (CSS, JS..) -->
     <!-- login/registro -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" >
 	<link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -19,15 +19,34 @@
 
 </head>
 <body>
+    <!-- Las sentencias {% block %} son los templates tag de Django que nos ayudan a reutilizar
+    lo que maquetamos en el HTML de manera que no estemos repitiendo las mismas cosas en cada
+    plantilla y así nos ahorramos tiempo de carga de la app ya algunos archivos los tendra en 
+    memoria guardados y así no tiene que mostrar toda una pagina por completo -->
+
+    <!-- Definimos estas sentencias {% block nombre_del_bloque %} y terminamos con un {% endblock %},
+    y con este mismo nombre de bloque ponemos en otros templates que tnegamos y sabemos que esa es la 
+    parte que estamos usando, en este caso, el bloque 'content' es el más generico y es el que usaremos en 
+    todas las plantillas para poder mostrar contenido -->
+
+    <!-- Por fuera de los bloques se pone lo que todas las plantillas comparten -->
+    <header class="main-header">
+        <nav class="main-nav">
+            <div class="logo">
+                <a href=""><img src="../static/imgs/logo.png" alt=""> <p>.Store</p></a> 
+                <span>DjangoStore</span>
+            </div>
+            <ul>
+                <li><a href="#0">Inicio</a></li>
+                <li><a href="#0">Productos</a></li>
+                <li><a href="#0">Inicia Sesion</a></li>
+                <li><a href="#0">Registrate</a></li>
+                <li><a href="#0">Sobre nosotros</a></li>
+            </ul>
+        </nav>         
+    </header>
 
     {% block content %}
-
-        {% block nav %}
-
-        {% endblock nav %}
-
-        <h2>Bienvenido {{user.username}}</h2>
-        <button><a href="{%url 'logout'%}">Logout</a></button>
 
     {% endblock content %}
 
