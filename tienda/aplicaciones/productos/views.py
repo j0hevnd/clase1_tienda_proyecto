@@ -27,7 +27,7 @@ def guardarProducto(request):
     
     # Creamos una istancia para el formulario
     if request.method == 'POST':
-        formulario = FormularioProductos(request.POST)
+        formulario = FormularioProductos(request.POST,request.FILES)
         #validamos el formulario
         # if formulario.is_valid():
         #     formulario_data = formulario.cleaned_data()
@@ -51,10 +51,6 @@ def guardarProducto(request):
         if formulario.is_valid():
             formulario.save()
             return redirect('app_productos:lista_productos')
-        else:
-            print(formulario)
-
-
     agregar_producto=  FormularioProductos()
     return render(request,'productos/agregar_producto.html',{'formulario':agregar_producto})           
             
