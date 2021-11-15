@@ -28,6 +28,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    color: white;
 }
 
 .content-header.hero {
@@ -41,19 +42,19 @@ body {
     /* position: relative; */
 }
 
-.main-header {
+/* .main-header {
     position: absolute;
     z-index: 1;
     width: 100%;
     font-family: 'Dosis', sans-serif;
-}
+} */
 
 .main-nav {
     display: flex;
     background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5));
 }
 
-.logo {
+/* .logo {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -61,7 +62,7 @@ body {
     padding: 20px 40px;
     font-size: 2rem;
     color: rgba(10, 107, 47, 0.877);
-}
+} */
 
 ul {
     display: flex;

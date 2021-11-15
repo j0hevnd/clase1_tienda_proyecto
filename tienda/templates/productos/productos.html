@@ -14,7 +14,6 @@
                 <div class="col-2">
                     <div id="cf">
                         <img class="bottom" src="imgs/grafico1.jpg" alt="">
-                        <!-- <img class="top" src="imgs/grafico2.jpg" alt=""> -->
                     </div>
                     
                 </div>
@@ -22,194 +21,30 @@
         </div>
     </div>
 
-    <!-- Categorias -->
-    <!-- <div class="categories">
-        <div class="small-container">
-            <div class="row">
-                <div class="col-3">
-                    <img src="imgs/1.jpg" alt="">
-                </div>
-                <div class="col-3">
-                    <img src="imgs/2.jpg" alt="">
-                </div>
-                <div class="col-3">
-                    <img src="imgs/3.jpg" alt="">
-                </div>
-            </div>
-        </div>       
-    </div> -->
-
     <!-- Productos -->
     <div class="small-container">
         <h2 class="title">Productos Destacados</h2>
         <div class="row">
-            <div class="col-4">
-                <img src="../static/imgs/1.jpg" alt="">
-                <h4>Camiseta Vue</h4>
-                <div class="rating">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star-half-stroke"></i>
+            {% for producto in productos %}
+                <div class="col-4">
+                    <img src="{{ producto.imagen.url }}" alt="{{ producto.descripcion }}">
+                    <h4>{{ producto.nombre }}</h4>
+                    <div class="rating">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <p class="parrafo_div negro">Precio: {{ producto.precio }}</p>
+                    <p class="parrafo_div">Cantidad: {{ producto.stock }}</p>
+                    {% if user.is_authenticated %} 
+                    <a class="a_ed" style="color: blue;" href="{% url 'app_productos:editar_producto' producto.pk %}">Editar</a>
+                    <a class="a_ed" style="color: blue;" href="{% url 'app_productos:eliminar_producto' producto.pk %}">Eliminar</a>
+                    {% endif %}
                 </div>
-                <p>$20.00</p>
-            </div>
-            <div class="col-4">
-                <img src="../static/imgs/2.jpg" alt="">
-                <h4>Camiseta Angular</h4> 
-                <div class="rating">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star-half-stroke"></i>
-                </div>               
-                <p>$20.00</p>
-            </div>
-            <div class="col-4">
-                <img src="../static/imgs/3.jpg" alt="">
-                <h4>Camiseta React</h4>
-                <div class="rating">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star-half-stroke"></i>
-                </div> 
-                <p>$20.00</p>
-            </div>
-            <div class="col-4">
-                <img src="../static/imgs/4.jpg" alt="">
-                <h4>Camiseta Redux</h4>
-                <div class="rating">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star-half-stroke"></i>
-                </div>
-                <p>$20.00</p>
-            </div>
-        </div>
-        <h2 class="title">Nuevos Productos</h2>
-        <div class="row">
-            <div class="col-4">
-                <img src="../static/imgs/5.jpg" alt="">
-                <h4>Camiseta Node</h4>
-                <div class="rating">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star-half-stroke"></i>
-                </div>
-                <p>$20.00</p>
-            </div>
-            <div class="col-4">
-                <img src="../static/imgs/6.jpg" alt="">
-                <h4>Camiseta Sass</h4> 
-                <div class="rating">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star-half-stroke"></i>
-                </div>               
-                <p>$20.00</p>
-            </div>
-            <div class="col-4">
-                <img src="../static/imgs/7.jpg" alt="">
-                <h4>Camiseta Html</h4>
-                <div class="rating">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star-half-stroke"></i>
-                </div> 
-                <p>$20.00</p>
-            </div>
-            <div class="col-4">
-                <img src="../static/imgs/8.jpg" alt="">
-                <h4>Camiseta Github</h4>
-                <div class="rating">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star-half-stroke"></i>
-                </div>
-                <p>$20.00</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-4">
-                <img src="../static/imgs/9.jpg" alt="">
-                <h4>Camiseta Bulma</h4>
-                <div class="rating">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star-half-stroke"></i>
-                </div>
-                <p>$20.00</p>
-            </div>
-            <div class="col-4">
-                <img src="../static/imgs/10.jpg" alt="">
-                <h4>Camiseta Typescript</h4> 
-                <div class="rating">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star-half-stroke"></i>
-                </div>               
-                <p>$20.00</p>
-            </div>
-            <div class="col-4">
-                <img src="../static/imgs/11.jpg" alt="">
-                <h4>Camiseta Drupal</h4>
-                <div class="rating">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star-half-stroke"></i>
-                </div> 
-                <p>$20.00</p>
-            </div>
-            <div class="col-4">
-                <img src="../static/imgs/12.jpg" alt="">
-                <h4>Camiseta Javascript</h4>
-                <div class="rating">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star-half-stroke"></i>
-                </div>
-                <p>$20.00</p>
-            </div>
+            {%endfor%}
         </div>
     </div>
-
-
-    <!-- js para el menu -->
-    <script>
-        var MenuItems = document.getElementById("MenuItems")
-
-        MenuItems.style.maxHeight = "0px";
-
-        function menutoggle(){
-            if(MenuItems.style.maxHeight == "0px"){
-                MenuItems.style.maxHeight = "200px"
-            }
-            else{
-                MenuItems.style.maxHeight = "0px"
-            }
-        }
-    </script>
     
 {% endblock content %}

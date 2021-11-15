@@ -30,48 +30,30 @@
     todas las plantillas para poder mostrar contenido -->
 
     <!-- Por fuera de los bloques se pone lo que todas las plantillas comparten -->
-    <!-- <header class="main-header">
-        <nav class="main-nav">
-            <div class="logo">
-                <a href=""><img src="../static/imgs/logo.png" alt=""> <p>.Store</p></a> 
-                <!-- <span>DjangoStore</span> -->
-            <!-- </div>
-            <ul>
-                <li><a href="{% url 'app_productos:home' %}">Inicio</a></li>
-                <li><a href="{% url 'app_productos:lista_productos' %}">Productos</a></li>
-                <li><a href="{% url 'app_usuarios:login' %}">Inicia Sesion</a></li>
-                <li><a href="{% url 'app_usuarios:registrar' %}">Registrate</a></li>
-                <li><a href="{% url 'app_productos:about' %}">Sobre nosotros</a></li>
-            </ul>
-        </nav>          -->
-   <!-- </header> -->
 
    <div class="header">
         <div class="container">
-            <div class="navbar">
+            <div class="header_flex">
                 <div class="logo">
                     <a href="{% url 'app_productos:home' %}"><img src="../static/imgs/logo.png" alt=""> <p>.Store</p></a> 
                 </div>
-                <nav>
-                    <ul id="MenuItems">
-                        <li><a href="{% url 'app_productos:home' %}">Inicio</a></li>
-                        <li><a href="{% url 'app_productos:lista_productos' %}">Productos</a></li>
-                        <li><a href="{% url 'app_productos:about' %}">Sobre nosotros</a></li>
+                <div class="navbar">
+                    <nav>
+                        <a href="{% url 'app_productos:home' %}">Inicio</a>
+                        <a href="{% url 'app_productos:lista_productos' %}">Productos</a>
+                        <a href="{% url 'app_productos:about' %}">Sobre nosotros</a>
                         {% if user.is_authenticated %}
-                        <li><a href="{% url 'app_productos:agregar_producto' %}">Agregar</a></li>
-                        <li><a href="{% url 'app_usuarios:logout' %}">Cerrar sesión</a></li>
+                        <a href="{% url 'app_productos:agregar_producto' %}">Agregar</a>
+                        <a href="{% url 'app_usuarios:logout' %}">Cerrar sesión</a>
                         {% endif %}
                         {% if not user.is_authenticated %}
-                        <li><a href="{% url 'app_usuarios:login' %}">Inicia Sesion</a></li>
-                        <li><a href="{% url 'app_usuarios:registrar' %}">Registrate</a></li>
-                        {% endif %} 
-
-                        
-                            
-                    </ul>
-                </nav>
-                <img src="../static/imgs/icono_3.png" width="70" height="55" alt="">
-                <img src="../static/imgs/menu.png" class="menu-icon" onclick="menutoggle()">
+                        <a href="{% url 'app_usuarios:login' %}">Inicia Sesion</a>
+                        <a href="{% url 'app_usuarios:registrar' %}">Registrate</a>
+                        {% endif %}  
+                    </nav>
+                    <img src="../static/imgs/icono_3.png" width="70" height="55" alt="">
+                    <img src="../static/imgs/menu.png" class="menu-icon" onclick="menutoggle()">
+                </div>
             </div>
         </div>
     </div>
@@ -94,11 +76,6 @@
                         <img src="../static/imgs/app-store.png" alt="">
                     </div>
                 </div>
-                <!-- <div class="footer-col-2">
-                    <div class="logo">
-                        <a href=""><img src="../static/imgs/logo.png" alt=""> <p>.Store</p></a> 
-                    </div>
-                </div> -->
                 <div class="footer-col-3">
                     <h3>Otros Links</h3>
                     <ul>
@@ -122,6 +99,23 @@
             <p class="copyright">Copyright 2021 - Django Store</p>
         </div>
     </div>
+
+    
+    <!-- js para el menu
+    <script>
+        var MenuItems = document.getElementById("MenuItems")
+
+        MenuItems.style.maxHeight = "0px";
+
+        function menutoggle(){
+            if(MenuItems.style.maxHeight == "0px"){
+                MenuItems.style.maxHeight = "200px"
+            }
+            else{
+                MenuItems.style.maxHeight = "0px"
+            }
+        }
+    </script> -->
 
 </body>
 </html>

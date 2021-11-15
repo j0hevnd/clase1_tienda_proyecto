@@ -18,48 +18,29 @@ def producListAll(request):
     context = {
         'productos': productos
     }
-    return render(request, template_name="productos/lista_productos.html", context=context)
+    return render(request, template_name="productos/productos.html", context=context)
 
 
 # protegemos ruta para que solo puedan acceder usuarios logueados
-@login_required(login_url='app_users:login') 
+@login_required(login_url='app_usuarios:login') 
 def guardarProducto(request):
     """
     Guarda producto en la base de datos
     """
-    
     # Creamos una istancia para el formulario
     if request.method == 'POST':
         formulario = FormularioProductos(request.POST,request.FILES)
-        #validamos el formulario
-        # if formulario.is_valid():
-        #     formulario_data = formulario.cleaned_data()
-        #     #obtenemos los datos del formulario
-        #     nombre = formulario_data.get("nombre")
-        #     descripcion = formulario_data.get("descripcion")
-        #     precio = formulario_data.get("precio")
-        #     stock = formulario_data.get("stock")
-        #     imagen = formulario_data.get("imagen")
-        #     # Guardamos la informacion obtenida del formulario en la Base de datos
-        #     Producto.objects.create(
-        #         nombre = nombre,
-        #         descripcion = descripcion,
-        #         precio = precio,
-        #         stock = stock,
-        #         imagen = imagen
-        #     )
-        #     # Tenemos que hacer un redirect o HttpResponseRedirect 
-        #     # despues de una solicitud éxitosa de un método POST
-        #     return redirect('app_productos:lista_productos')
         if formulario.is_valid():
             formulario.save()
             return redirect('app_productos:lista_productos')
+        
     agregar_producto=  FormularioProductos()
+    
     return render(request,'productos/agregar_producto.html',{'formulario':agregar_producto})           
         
         
 # protegemos ruta para que solo puedan acceder usuarios logueados
-@login_required(login_url='app_users:login')                    
+@login_required(login_url='app_usuarios:login')                    
 def editarProducto(request, pk):
     """
     Edita un producto seleccionado
@@ -78,29 +59,16 @@ def editarProducto(request, pk):
         
         #validamos el formulario
         if formulario.is_valid():
-            formulario_data = formulario.cleaned_data()
-            #obtenemos los datos del formulario
-            nombre = formulario_data.get("nombre")
-            descripcion = formulario_data.get("descripcion")
-            precio = formulario_data.get("precio")
-            stock = formulario_data.get("stock")
-            imagen = formulario_data.get("imagen")
-            # Guardamos la informacion obtenida del formulario en la Base de datos
-            Producto.objects.create(
-                nombre = nombre,
-                descripcion = descripcion,
-                precio = precio,
-                stock = stock,
-                imagen = imagen
-            )
+            formulario.save()
             return redirect(to = 'app_productos:lista_productos')
             
     context = {
-        'producto': producto_form
+        'formulario': producto_form
     }
     return render(request, template_name="productos/agregar_producto.html", context=context)
 
 
+@login_required(login_url='app_usuarios:login') 
 def eliminarProducto(request,pk):
     """
     Elimina un producto seleccionado
@@ -120,7 +88,6 @@ def homeView(request):
     """
     Pagina de inicio
     """       
-    
     return render(request, template_name='home/home.html')
 
 
@@ -128,5 +95,4 @@ def aboutView(request):
     """
     Pagina de nosotros
     """       
-    
     return render(request, template_name='home/about.html')
