@@ -109,3 +109,6 @@ venv.bak/
 
 #Code editors
 .vscode
+
+# migratations
+migrations
