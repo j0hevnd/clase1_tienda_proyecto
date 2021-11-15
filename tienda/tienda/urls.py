@@ -20,8 +20,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 
+from aplicaciones.productos import views
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.homeView), # primera vista que vemos
     
     # Incluimos las urls de cada proyecto por separado 
     # para no tener todas las rutas aquí juntas, si no 
