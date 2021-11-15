@@ -1,5 +1,6 @@
-from django.http.response import HttpResponseRedirect
 from django.shortcuts import redirect, render
+from django.contrib.auth.decorators import login_required # para proteger rutas
+
 
 # modelo
 from aplicaciones.productos.models import Producto
@@ -17,9 +18,11 @@ def producListAll(request):
     context = {
         'productos': productos
     }
-    return render(request, template_name="productos/productos.html", context=context)
+    return render(request, template_name="productos/lista_productos.html", context=context)
 
 
+# protegemos ruta para que solo puedan acceder usuarios logueados
+@login_required(login_url='app_users:login') 
 def guardarProducto(request):
     """
     Guarda producto en la base de datos
@@ -53,8 +56,10 @@ def guardarProducto(request):
             return redirect('app_productos:lista_productos')
     agregar_producto=  FormularioProductos()
     return render(request,'productos/agregar_producto.html',{'formulario':agregar_producto})           
-            
-                    
+        
+        
+# protegemos ruta para que solo puedan acceder usuarios logueados
+@login_required(login_url='app_users:login')                    
 def editarProducto(request, pk):
     """
     Edita un producto seleccionado
@@ -64,6 +69,9 @@ def editarProducto(request, pk):
     """
     
     producto = Producto.objects.get(pk=pk)
+    
+    if request.method == 'GET':
+        producto_form = FormularioProductos(instance=producto)
     
     if request.method == 'POST':
         formulario = FormularioProductos(request.POST, instance=producto)
@@ -88,9 +96,9 @@ def editarProducto(request, pk):
             return redirect(to = 'app_productos:lista_productos')
             
     context = {
-        'producto': producto
+        'producto': producto_form
     }
-    return render(request, template_name="productos/tempalte_para_editar.html", context=context)
+    return render(request, template_name="productos/agregar_producto.html", context=context)
 
 
 def eliminarProducto(request,pk):
