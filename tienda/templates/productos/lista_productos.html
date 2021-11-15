@@ -10,6 +10,8 @@
         {{producto.precio}}
         {{producto.stock}}
         {{producto.imagen}}
+        <a href="{% url 'app_productos:eliminar_producto' producto.pk %}">Eliminar</a>
+       
     {%endfor%}
 
 {% endblock content %}
