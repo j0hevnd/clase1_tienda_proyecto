@@ -3,13 +3,12 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 
 # Create your views here.
-def bienvenida(request):
-    return render(request,'bienvenida.html')
 
 def login_view(request):
     """
-    Espacion para comentar que hace la función
+    Loguear un usuario
     """
+    print(request.POST)
     if(request.method == 'POST'):
         username = request.POST['username']
         password = request.POST['password']
@@ -23,13 +22,17 @@ def login_view(request):
 
 def register_view(request):
     """
-    Espacion para comentar que hace la función
+    Registra un usuario en la base de datos
     """
-    if(request.method == 'POST'):        
+    
+    if(request.method == 'POST'):
         username = request.POST['username']
         email = request.POST['email']
         password = request.POST['password']
         user = User.objects.create_user(username = username, email = email, password = password)
+        user.email = request.POST['email']
+        user.first_name = request.POST['first_name']
+        user.last_name = request.POST['last_name']
         if 'staff' in request.POST:
             user.is_staff = True
         user.save()
@@ -40,7 +43,7 @@ def register_view(request):
 
 def logout_view(request):
     """
-    Espacion para comentar que hace la función
+    Cerrar sesión
     """
     logout(request)
-    return redirect('app_productos:lista_productos')
+    return redirect('app_usuarios:login')

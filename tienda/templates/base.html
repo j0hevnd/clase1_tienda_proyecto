@@ -56,9 +56,18 @@
                     <ul id="MenuItems">
                         <li><a href="{% url 'app_productos:home' %}">Inicio</a></li>
                         <li><a href="{% url 'app_productos:lista_productos' %}">Productos</a></li>
+                        <li><a href="{% url 'app_productos:about' %}">Sobre nosotros</a></li>
+                        {% if user.is_authenticated %}
+                        <li><a href="{% url 'app_productos:agregar_producto' %}">Agregar</a></li>
+                        <li><a href="{% url 'app_usuarios:logout' %}">Cerrar sesión</a></li>
+                        {% endif %}
+                        {% if not user.is_authenticated %}
                         <li><a href="{% url 'app_usuarios:login' %}">Inicia Sesion</a></li>
                         <li><a href="{% url 'app_usuarios:registrar' %}">Registrate</a></li>
-                        <li><a href="{% url 'app_productos:about' %}">Sobre nosotros</a></li>
+                        {% endif %} 
+
+                        
+                            
                     </ul>
                 </nav>
                 <img src="../static/imgs/icono_3.png" width="70" height="55" alt="">

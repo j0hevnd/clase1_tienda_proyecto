@@ -6,23 +6,24 @@
         
     <h1>Login</h1>
 
-    <form class="formulario" action="" method="POST">
+    <form class="formulario" action="{% url 'app_usuarios:login' %}" method="POST">
         {% csrf_token %}
         <div class="contenedor">    
 
             <div class="input-contenedor">
                 <i class="fas fa-envelope icon"></i>
-                <input type="text" placeholder="Usuario">
+                <input type="text" name="username" placeholder="Usuario">
             </div>
     
             <div class="input-contenedor">
                 <i class="fas fa-key icon"></i>
-                <input type="password" placeholder="Contraseña">
+                <input type="password" name="password" placeholder="Contraseña">
             </div>
+
             <input type="submit" value="Login" class="button">
-            <p>Al registrarte, aceptas nuestras Condiciones de uso y Política de privacidad.</p>
-            <p>¿No tienes una cuenta? <a class="link" href="{% url 'app_usuarios:registrar' %}">Registrate </a></p>
         </div>
     </form>
+    <p>Al registrarte, aceptas nuestras Condiciones de uso y Política de privacidad.</p>
+    <p>¿No tienes una cuenta? <a class="link" href="{% url 'app_usuarios:registrar' %}">Registrate </a></p>
 
 {% endblock content %}
