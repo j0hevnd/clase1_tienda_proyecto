@@ -106,9 +106,9 @@ venv.bak/
 
 # mypy
 .mypy_cache/
-
+ 
 #Code editors
 .vscode
-
+ 
 # migratations
 migrations
