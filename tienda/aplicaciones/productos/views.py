@@ -17,7 +17,7 @@ def producListAll(request):
     context = {
         'productos': productos
     }
-    return render(request, template_name="productos/productos.html", context=context)
+    return render(request, template_name="productos/lista_productos.html", context=context)
 
 
 def guardarProducto(request):

@@ -5,7 +5,11 @@
 {% block content %}
 
     {% for producto in productos %}
-        {{producto}}
+        {{producto.nombre}}
+        {{producto.descripcion}}
+        {{producto.precio}}
+        {{producto.stock}}
+        {{producto.imagen}}
     {%endfor%}
 
 {% endblock content %}
